@@ -46,4 +46,3 @@ function TodoItem({ todo, setTodos }) {
 }
 
 export default TodoItem;
-g;
