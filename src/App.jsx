@@ -1,42 +1,31 @@
-import { useRef, useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
+// App.jsx
+import React, { useState } from "react";
+import TodoInput from "./TodoInput";
+import TodoList from "./TodoList";
+import TimeDisplay from "./TimeDisplay";
+import RandomQuote from "./RandomQuote";
 import "./App.css";
 
 function App() {
-  const [todo, setTodo] = useState([
-    {
-      id: Number(new Date()),
-      content: "안녕하세요",
-    },
-  ]);
-  const inputRef = useRef(null);
-  const addTodo = () => {
-    const newTodo = {
-      id: Number(new Date()),
-      content: inputRef.current.value,
-    };
-    setTodo((prev) => [...prev, newTodo]);
-  };
+  // Todo CRUD 상태: 각 todo는 id, content, isEditing 플래그를 가짐.
+  const [todos, setTodos] = useState([{ id: Date.now(), content: "안녕하세요", isEditing: false }]);
+
   return (
-    <>
-      <input ref={inputRef} />
-      <button onClick={addTodo}>추가</button>
-      <ul>
-        {todo.map((todo) => (
-          <li key={todo.id}>
-            {todo.content}
-            <button
-              onClick={() => {
-                setTodo((prev) => prev.filter((el) => el.id !== todo.id));
-              }}
-            >
-              삭제
-            </button>
-          </li>
-        ))}
-      </ul>
-    </>
+    <div className="App">
+      <h1>Todo App</h1>
+      {/* Todo를 입력하고 추가하는 컴포넌트 */}
+      <TodoInput todos={todos} setTodos={setTodos} />
+      {/* Todo 목록을 조회 및 관리하는 컴포넌트 */}
+      <TodoList todos={todos} setTodos={setTodos} />
+
+      <hr />
+      {/* 현재 시간 표시 컴포넌트 */}
+      <TimeDisplay />
+
+      <hr />
+      {/* 랜덤 명언 컴포넌트 */}
+      <RandomQuote />
+    </div>
   );
 }
 
