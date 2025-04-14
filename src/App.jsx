@@ -1,9 +1,9 @@
 // App.jsx
 import React, { useState } from "react";
-import TodoInput from "./TodoInput";
-import TodoList from "./TodoList";
-import TimeDisplay from "./TimeDisplay";
-import RandomQuote from "./RandomQuote";
+import TodoInput from "./components/TodoInput";
+import TodoList from "./components/TodoList";
+import TimeDisplay from "./components/TimeDisplay";
+import RandomQuote from "./components/RandomQuote";
 import "./App.css";
 
 function App() {
